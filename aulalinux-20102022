@@ -1,0 +1,11 @@
+#04_Instalar Software (Linux)
+			 MIcrosoft - .EXE ou MSI
+			 -----------------------
+			 Linux Mint: 15 - .DEB
+			 Opera Linux
+			 
+			 O que é Gdebi?
+			 Gdebi --> dependência
+			 Central de Aplicativos
+			 Terminal - apt 
+			 Sudo apt install git vim psensor

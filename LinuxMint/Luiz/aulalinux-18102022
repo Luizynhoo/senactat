@@ -1,0 +1,25 @@
+#01_MintUpdate 
+ a) Atualizar       --> apt      --> sources.list
+ b) Repositórios    --> apt      --> sources.list
+ (=Diretorio)
+ c) Pesquisar: o que é PPA's
+ d) Instalar atualização  --> apt 
+ ///////////////////////////////////////////////////////////////////////////
+ #02_Instalação dos convidados do VirtualBox 
+ a) Dispositivos
+                                   Inserir imagem do CD dos convidados
+/////////////////////////////////////////////////////////////////////////////                                   
+#03_Atualizando via linha de comando
+    Pesquisar: O que é BASH?								   
+	           O que é SHELL?
+			   O que é APT-GET?
+			   O que é SUDO?
+/////////////////////////////////////////////////////////////////////////////			   
+	Comando: sudo apt update    --> MintUpdate Atualizar		   
+	         sudo apt update    --> MintUpdate Atualizar
+			 sudo apt full-upgrade 
+			 sudo apt dist-upgrade 
+			 sudo apt autoremove
+			 sudo apt autoclean 
+			 sudo apt clean
+			 history

@@ -1,0 +1,26 @@
+Comandos de rede para Windows
+1. ipconfig
+2. ipconfig /all = mostrar o ip mais as informações gerais
+3. ipconfig /? = ajuda
+4. hostname = mostrar o nome da maquina
+5. ping ip ou ping nome = testa a rede, afim de saber se há conectividade
+6. ping 192.14.34.2.1
+7. ping PC10
+8. cls = para limpar o prompt
+9. ipconfig /a =
+10. net send IP ou nome ou * "mensagem" 
+
+*para alterar o nome da maquina*:
+clicar mo iniciar
+Botão direito no "Meu Computador"
+"propriedades"
+
+APIPA = endereçamento IP privado automático, sendo possivel atribuir a si mesmo um endereço IP
+FireWall = camada de proteção do pc para evitar invasoes de ataque
+IANA = Gestor dos endereços IP do mundo
+NIC.BR = Distribui o IP pelo Brasil
+
+IP classe A = começa com 10.N PC.N PC.N PC e é usado para redes com mais de 254 equipamentos
+IP classe C = começa com 192.168.X.N PC e é usado em redes com menos de 254 equipamentos(16.777.214 pcs)
+IP classe B = começa com 172.16.0 ate 31.N PC (16.534 pcs)
+* = mandar a mensagem para todos os usuarios

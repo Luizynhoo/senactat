@@ -1,0 +1,27 @@
+Windows XP
+instalação da ISO
+"ENTER" e "F8"
+(Partição = Dividir o HD em "pedaços")
+Criar uma partição apertando "C" 
+C: para o windows (5000)
+D: para os arquivos (3000)
+E: para utilizar o resto (O que sobrar)
+Formatar: Preparar o disco para o uso
+Formatação FAT: Uso de tabela para alocar arquivos, mais antigo e mais utilizado, ou seja mais compativel, além de ser mais rápido
+porem possuiu uma limitação, um arquivo n pode passar de 4GB.
+Formatação NTFS: Usado no Windows, principalmente no Windows 10, sendo mais seguro e o mais moderno, não tendo limite de arquivos
+como o FAT 
+"Escolher a Formatação Fat (Normal)"
+"Proceguir com a formatação"
+Colocar no Brasil e teclado no Português ABNT
+Colocar o "Nome" e "Organização"
+"Chave" colocar depois
+Escolher "Configurações típicas"
+Deixar a maquina em "Rede Interna"
+
+Clonar a maquina ja criada
+Ctrl + Organização
+"Gerar novo endereços MAC" (ipconfig /all no CMD)
+Gerar um endereço de IP fixo para a maquina para que assim seja possivel a conexão entre os computadores por rede
+A maquina, por padrao, não vem com IP, obrigando a ocorrer o processo DORA
+O endereço fisico é um endereço que não se troca, ja que vem gravado na placa de rede

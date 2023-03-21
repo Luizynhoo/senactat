@@ -1,0 +1,40 @@
+Switch> enable
+Switch#
+
+...
+
+Switch# conf t
+Switch(config)# hostname SWFeliz
+SWFeliz(config)#
+
+
+...
+
+Switch# conf t
+Switch(config)# vlan 2
+Switch(config-vlan)#name NOMEdaVLAN
+
+...
+
+SW(config)#interface range fast 0/1-10
+SW(config-if)#switchport access vlan 35
+
+...
+
+!Deixar um Switch no passivo e ativo 
+SW-A(config)#int range gigabitEthernet 0/1-2
+SW-A(config-if-range)#channel-group 1 mode active
+
+
+SW-B(config)#int range gigabitEthernet 0/1-2
+SW-B(config-if-range)#channel-group 1 mode passive
+
+int range g0/1-2
+switchport mode trunk
+switchport trunk allowed all
+
+...
+
+!Verificar com
+show etherchannel
+show interfaces etherchannel

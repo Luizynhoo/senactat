@@ -1,7 +1,7 @@
 enable
     !Data e Hora
     clock set 20:45:00 14 March 2023
-    !Entrar na Cinfiguração do terminal
+    !Entrar na Configuração do terminal
     configure terminal
         !Nome do host
         hostname rt-1941-1

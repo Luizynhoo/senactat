@@ -1,0 +1,65 @@
+Configuração roteador
+
+enable
+    !Data e Hora
+    clock set 20:45:00 14 March 2023
+    !Entrar na Configuração do terminal
+    configure terminal
+        !Nome do host
+        hostname rt-1941-1
+        service password-encryption
+        service timestamps log datetime msec
+        service timestamps debug datetime msec
+        no ip domain-lookup
+        banner motd #AVISO: acesso autorizado somente para funcionarios#
+            security passwords min-length 7
+        enable secret 123@senac
+        username senac secret 123@senac
+        username tatuape password 123@senac
+        username admin privilege 15 secret 123@senac
+            ip domain-name senac.br
+            !crypto key generate rsa usage-keys modulus 1024 (outro) 
+        crypto key generate rsa general-keys modulus 1024
+        ip ssh version 2
+        ip ssh time-out 60
+        ip ssh authentication-retries 2
+            login block-for 120 attempts 2 within 60
+        line console 0  
+            login local 
+            password 123@senac
+            logging synchronous
+            exec-timeout 5 30
+            exit
+        line vty 0 4 
+            login local 
+            password 123@senac
+            logging synchronous 
+            exec-timeout 5 30 
+            transport input ssh
+            exit
+        interface gigabitEthernet 0/0
+             description interface de Gateway
+             ip address 192.168.1.254 255.255.255.0
+             no shutdown
+             exit
+        interface gigabitEthernet 0/1
+             description interface de WAN Router 1941
+             ip address 10.0.0.1 255.255.255.252
+             no shutdown
+             end
+    
+    !Salvar
+    Write
+
+    !Verificar Configuração
+    show running-config
+    show ip interface brief
+    show interface gigabitEthernet  0/0
+    show ip route
+
+     
+    !Testando o acesso remoto do Desktop
+    telnet 192.168.1.250
+    telnet 192.168.1.251
+    !Usuarios sendo utilizados
+    show users         

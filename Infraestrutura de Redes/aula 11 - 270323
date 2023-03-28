@@ -1,0 +1,46 @@
+Access Point 
+
+
+!PRIMEIRA ETAPA: Configuração do Router 1941-1
+!Acessando o modo EXEC Privilegiado
+enable
+
+	!Acessando o modo de Configuração Global de Comandos
+	configure terminal
+
+		!Configurando a Rota Estática para atingir a Rede 192.168.2.0/24
+		!DICA: rota estática é indicada para links Ponto-a-Ponto e para redes simples, com poucos roteadores (saltos/caminhos)
+		!DICA: rota estática recebe a letra: S (static) no início da rota declarada manualmente na Tabela de Roteamento
+		!OBSERVAÇÃO: na tabela de roteamento temos as opções: L - local (Endereço Local) e C - connected (Rede Diretamente Conectada)
+		!OBSERVAÇÃO: rota estática é configurada manualmente em cada equipamento da rede, sua atualização não é dinâmica (automática)
+		!OBSERVAÇÃO: rota estática tem a Distância Administrativa (AD - Confiabilidade) de: 1 (um)
+		!OBSERVAÇÃO: rota estática tem Métrica (Custo) de: 0 (zero)
+		!OBSERVAÇÃO: rota estática pode encaminhar redes por: Endereço IPv4/IPv6 de Próximo Salto ou Interface de Saída
+		!EXEMPLO: ip route Rede_de_Destino Máscara_de_Rede_de_Destino Interface_de_Saída ou IP_do_Próximo_Salto Distância_Administrativa
+		ip route 192.168.2.0 255.255.255.0 10.0.0.2
+		end
+	
+!Salvando as configurações da memória RAM para a memória NVRAM
+write
+
+!SEGUNDA ETAPA: Configuração do Router 2911-1
+!Acessando o modo EXEC Privilegiado
+enable
+	configure terminal
+
+		!Configurando a Rota Estática para atingir as Redes 192.168.1.0/24
+		!OBSERVAÇÃO: nesse cenário vou utilizar a Interface de Saída para as Redes
+		ip route 192.168.1.0 255.255.255.0 10.0.0.1
+		end
+write
+
+!Visualizando as configurações da memória RAM
+show running-config | section interface
+show running-config | section ip route
+
+!Verificando as informações das Interfaces e Tabela de Roteamento Local
+show ip interface brief
+show ip route
+
+!Testando a conexão nos Desktops da Rede com o Protocolo ICMP
+ping 192.168.1.1

@@ -5,14 +5,14 @@ Router>ena
 Router#conf t
 Router(config)#hostname SP
 SP(config)#int f0/0
+SP(config-if)#no shut
 SP(config-if)#desc Porta LAN de SP
 SP(config-if)#ip add 192.168.1.1 255.255.255.0
-SP(config-if)#no shut
 SP(config-if)#exit
 SP(config)#int s0/0
+SP(config-if)#no shut
 SP(config-if)#desc PORTA WAN que LIGA SP ao RJnet
 SP(config-if)#ip add 200.100.10.1 255.255.255.0
-SP(config-if)#no shut
 SP(config-if)#clock rate 128000
 SP(config-if)#band 128
 SP(config-if)#exit

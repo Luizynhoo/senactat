@@ -1,0 +1,55 @@
+en
+
+conf t
+hostname Guaianazes
+int f0/0
+desc Porta LAN de Guaianazes
+ip add 172.84.0.1 255.255.0.0
+no shut
+exit
+int s0/0
+desc PORTA WAN que LIGA Guaianazes a Itaquera
+ip add 29.0.0.1 255.0.0.0
+no shut
+clock rate 500000
+band 512
+exit
+router rip 
+net 172.84.0.1
+net 29.0.0.1
+
+Ctrl+Z
+sh run
+copy run star
+
+.....
+
+
+SP#reload
+
+.....
+
+
+SP(config)# line con 0
+SP(config-line)#password SENHA
+SP(config-line)#login
+.....
+SP(config)# enable secret SENHA
+SP(config)# enable password SENHA
+
+Configurar o gateway das maquinas 
+
+
+
+
+
+
+int s0/1
+desc PORTA WAN que Guaianazes a Tatuape
+ip add 30.0.0.2 255.0.0.0
+no shut
+clock rate 128000
+band 128
+exit
+router rip 
+net 30.0.0.2

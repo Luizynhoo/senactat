@@ -1,0 +1,209 @@
+
+!
+hostname rt-04
+!
+boot-start-marker
+boot-end-marker
+!
+!
+security passwords min-length 8
+enable secret 4 D.ypdVr3FRhEsh3TDjrkDyDFbL3RbUr48j5o40PFfTA
+!
+no aaa new-model
+!
+ip cef
+!
+!
+!
+ip dhcp excluded-address 172.16.41.1 172.16.41.100
+ip dhcp excluded-address 172.16.41.200 172.16.41.254
+ip dhcp excluded-address 172.16.42.1 172.16.42.100
+ip dhcp excluded-address 172.16.42.200 172.16.42.254
+ip dhcp excluded-address 172.16.43.1 172.16.43.100
+ip dhcp excluded-address 172.16.43.200 172.16.43.254
+ip dhcp excluded-address 172.16.44.1 172.16.44.100
+ip dhcp excluded-address 172.16.44.200 172.16.44.254
+ip dhcp excluded-address 172.16.45.1 172.16.45.100
+ip dhcp excluded-address 172.16.45.200 172.16.45.254
+!
+ip dhcp pool vlan-41
+ network 172.16.41.0 255.255.255.0
+ default-router 172.16.41.254
+ dns-server 8.8.8.8 8.8.4.4
+ domain-name senac.br
+!
+ip dhcp pool vlan-42
+ network 172.16.42.0 255.255.255.0
+ default-router 172.16.42.254
+ dns-server 8.8.8.8 8.8.4.4
+ domain-name senac.br
+!
+ip dhcp pool vlan-43
+ network 172.16.43.0 255.255.255.0
+ default-router 172.16.43.254
+ dns-server 8.8.8.8 8.8.4.4
+ domain-name senac.br
+!
+ip dhcp pool vlan-44
+ network 172.16.44.0 255.255.255.0
+ default-router 172.16.44.254
+ dns-server 8.8.8.8 8.8.4.4
+ domain-name senac.br
+!
+ip dhcp pool vlan-45
+ network 172.16.45.0 255.255.255.0
+ default-router 172.16.45.254
+ dns-server 8.8.8.8 8.8.4.4
+ domain-name senac.br
+!
+!
+!
+no ip domain lookup
+ip domain name senac.br
+login block-for 120 attempts 4 within 60
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+license udi pid CISCO2911BR-SEC/K9 sn TSP1833AAZG
+!
+!
+username luiz privilege 15 secret 4 D.ypdVr3FRhEsh3TDjrkDyDFbL3RbUr48j5o40PFfTA
+username ryan privilege 15 secret 4 D.ypdVr3FRhEsh3TDjrkDyDFbL3RbUr48j5o40PFfTA
+username rafael privilege 15 secret 4 D.ypdVr3FRhEsh3TDjrkDyDFbL3RbUr48j5o40PFfT                                                                                                                     A
+username weslley privilege 15 secret 4 D.ypdVr3FRhEsh3TDjrkDyDFbL3RbUr48j5o40PFf                                                                                                                     TA
+!
+redundancy
+!
+!
+!
+!
+!
+ip ssh time-out 60
+ip ssh authentication-retries 2
+ip ssh version 2
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description Interface de Loopback para ID do OSPF
+ ip address 4.4.4.4 255.255.255.255
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0.40
+ description Subiinterface da VLAN de SVI do Switch Layer 3 3560
+ encapsulation dot1Q 40
+ ip address 172.16.40.254 255.255.255.0
+!
+interface GigabitEthernet0/0.41
+ encapsulation dot1Q 41
+ ip address 172.16.41.254 255.255.255.0
+!
+interface GigabitEthernet0/0.42
+ encapsulation dot1Q 42
+ ip address 172.16.42.254 255.255.255.0
+!
+interface GigabitEthernet0/0.43
+ encapsulation dot1Q 43
+ ip address 172.16.43.254 255.255.255.0
+!
+interface GigabitEthernet0/0.44
+ encapsulation dot1Q 44
+ ip address 172.16.44.254 255.255.255.0
+!
+interface GigabitEthernet0/0.45
+ encapsulation dot1Q 45
+ ip address 172.16.45.254 255.255.255.0
+!
+interface GigabitEthernet0/1
+ description Interface de acesso a Internet do grupo-04
+ ip address dhcp
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Serial0/0/0
+ description Iterface Grupo-04 para Grupo-05
+ bandwidth 64
+ ip address 192.168.1.13 255.255.255.252
+ clock rate 64000
+!
+interface Serial0/0/1
+ description Interface Grupo-03 para Grupo-04
+ bandwidth 64
+ ip address 192.168.1.10 255.255.255.252
+!
+router ospf 4
+ router-id 4.4.4.4
+ log-adjacency-changes detail
+ auto-cost reference-bandwidth 10000
+ passive-interface GigabitEthernet0/0
+ passive-interface GigabitEthernet0/1
+ network 172.16.40.0 0.0.0.255 area 0
+ network 172.16.41.0 0.0.0.255 area 0
+ network 172.16.42.0 0.0.0.255 area 0
+ network 172.16.43.0 0.0.0.255 area 0
+ network 172.16.44.0 0.0.0.255 area 0
+ network 172.16.45.0 0.0.0.255 area 0
+ network 192.168.1.8 0.0.0.3 area 0
+ network 192.168.1.12 0.0.0.3 area 0
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+banner motd ^CAVISO:acesso autorizado somente para integrantes^C
+!
+line con 0
+ exec-timeout 5 30
+ password 7 014254577B180301204F
+ logging synchronous
+ login local
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ exec-timeout 5 30
+ password 7 055A545C015F4B071806
+ logging synchronous
+ login local
+ transport input ssh
+!
+scheduler allocate 20000 1000
+!
+end
